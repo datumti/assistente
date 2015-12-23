@@ -1,0 +1,74 @@
+
+
+
+<!-- Jumbotron -->
+<div class="jumbotron">
+    <h2>Lista de Usuários</h2>
+    <p class="lead">Na guia usuários será possível Incluir, Editar ou Excluir um usuário</p>   
+</div>
+
+<!-- Example row of columns -->
+<div class="row">
+    
+     <?php
+    $flash = $this->flashMessenger();
+    $flash->setMessageOpenFormat('<div%s">
+     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+         &times;
+     </button>
+     <ul><li>')
+            ->setMessageSeparatorString('</li><li>')
+            ->setMessageCloseString('</li></ul></div>');
+
+    echo $flash->render('error', array('alert', 'alert-dismissible', 'alert-danger'));
+    echo $flash->render('info', array('alert', 'alert-dismissible', 'alert-info'));
+    echo $flash->render('default', array('alert', 'alert-dismissible', 'alert-warning'));
+    echo $flash->render('success', array('alert', 'alert-dismissible', 'alert-success'));
+    ?>
+    
+    <div class="well">
+    <a href="<?php echo $this->url('assistente', array('controller' => 'usuarios', 'action' => 'new')); ?>" class="btn btn-primary">Novo</a>
+    <br />
+    <br />
+    <table class="table table-striped tabelaListar">
+        <thead>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Departamento</th>
+        <th>Ação</th>
+        </thead>
+        <tbody>
+<?php foreach ($this->data as $data): ?>
+                <tr>
+                    <td><?php echo $data->getId(); ?></td>
+                    <td><?php echo $data->getNome(); ?></td>
+                    <td><?php echo $data->getEmail(); ?></td>
+                    <td><?php echo $data->getDepartamento(); ?></td>  
+                    <td>
+                        <a href="<?php echo $this->url('assistente-interna', array('controller' => 'usuarios', 'action' => 'details', 'id' => $data->getId())) ?>" class="btn btn-default">Detalhes</a> | 
+                        <a href="<?php echo $this->url('assistente-interna', array('controller' => 'usuarios', 'action' => 'edit', 'id' => $data->getId())) ?>" class="btn btn-default">Editar</a> | 
+                        <a href="<?php echo $this->url('assistente-interna', array('controller' => 'usuarios', 'action' => 'delete', 'id' => $data->getId())) ?>" class="btn btn-default">Excluir</a>
+                    </td>
+                </tr>
+<?php endforeach; ?>
+        </tbody>
+    </table>
+    </div>
+    <br />
+
+
+<?php echo $this->paginationControl($this->data, 'Sliding', 'paginator'); ?>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

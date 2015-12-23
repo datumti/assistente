@@ -1,0 +1,51 @@
+
+
+
+<!-- Jumbotron -->
+<div class="jumbotron">
+    <h2>Detalhes do Usuario</h2>
+</div>
+
+<!-- Example row of columns -->
+<div class="row"> 
+
+
+    <div class="col-md-12">
+        <div class="well">
+            <div class="media">
+                <div class="media-left">
+                    <a href="#">
+                        <img class="media-object img-circle" src="<?php echo "/fotos/" . str_replace(" ", "_", $this->data->getFoto()); ?>">
+                    </a>
+                </div>
+                <div class="media-body">
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4 class="media-heading"><?php echo "<strong>Nome:</strong>" . $this->data->getNome(); ?></h4>
+                            <h4 class="media-heading"><?php echo "<strong>Matricula:</strong>" . $this->data->getMatricula(); ?></h4>
+                            <h4 class="media-heading"><?php echo "<strong>Data da Admissão:</strong>" . $this->data->getAdmissao(); ?></h4>
+                            <h4 class="media-heading"><?php echo "<strong>Departamento:</strong>" . $this->data->getDepartamento(); ?></h4>
+                            <h4 class="media-heading"><?php echo "<strong>Data de Nascimento:</strong>" . $this->data->getDataNascimento(); ?></h4>
+                            <h4 class="media-heading"><?php echo "<strong>E-mail:</strong>" . $this->data->getEmail(); ?></h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

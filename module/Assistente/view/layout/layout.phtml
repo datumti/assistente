@@ -1,0 +1,76 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('Assistente Corag')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+
+        <!-- Le styles -->
+        <?php
+        
+        echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/images/favicon.ico'))
+                ->prependStylesheet($this->basePath() . '/css/style.css')
+                ->prependStylesheet($this->basePath() . '/css/justified-nav.css')
+                ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
+                ->prependStylesheet($this->basePath() . '/css/bootstrap.css')
+                ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+                ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.css')
+        ?>
+
+        <!-- Scripts -->
+        <?php
+        echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                ->prependFile($this->basePath() . '/js/bootstrap.js')
+                ->prependFile($this->basePath() . '/js/npm.js')
+                ->prependFile($this->basePath() . '/js/funcoes.js')
+                ->prependFile($this->basePath() . '/js/jquery.maskedinput.js')
+                ->prependFile($this->basePath() . '/js/jquery-1.9.1.js')
+        ?>
+
+    </head>
+
+    <body class="fundoBody">
+
+        <div class="container">
+
+            <!-- The justified navigation menu is meant for single line per list item.
+          Multiple lines will require custom code not provided by Bootstrap. -->
+            <div class="masthead">
+                <?php if ($this->UserIdentity('AssistenteAdmin')): ?>
+                <h3 class="text-muted"><img src="<?php echo $this->basePath() . '/images/logo.png' ?>" width="60" height="60"> Assistente Corag</h3> 
+                <nav>
+                    <ul class="nav nav-justified">
+                        <li><a href="<?php echo $this->url('assistente', array('controller' => 'departamentos', 'action' => 'index')) ?>">Departamentos</a></li>
+                        <li><a href="<?php echo $this->url('assistente', array('controller' => 'usuarios', 'action' => 'index')) ?>">Usuários</a></li>
+                        <li><a href="<?php echo $this->url('assistente-logout') ?>">Logout</a></li>
+                    </ul>
+                </nav>
+                <?php endif; ?>
+            </div>
+
+                <?php echo $this->content; ?>
+            
+            <?php if ($this->UserIdentity('AssistenteAdmin')): ?>
+            <hr>
+            <footer>
+                
+                <p>&copy; Companhia Rio-grandense de Artes Gráficas. <?php echo 'Todos os direitos reservados' ?></p>
+                 
+            </footer>
+            <?php endif; ?>
+        </div> <!-- /container -->
+
+
+
+
+
+
+
+
+
+
+<?php echo $this->inlineScript() ?>
+    </body>
+</html>

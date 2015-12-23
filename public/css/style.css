@@ -1,0 +1,35 @@
+.tabelaListar th, td{
+    text-align: center;
+    
+}
+
+.logoLogin{
+    margin-left: 14%;  
+}
+
+.formEspacoTopo{
+    margin-top: 60px; 
+}
+
+.fundoBody{
+    background: #DCDCDC;
+}
+
+ul{
+    padding: 0;
+    margin: 0;
+}
+
+.error{
+    color: #FF0000;
+    list-style: none;
+    text-align: center;
+}
+
+.error li{
+    margin-left: 0;
+}
+
+.alert li{
+    list-style: none;
+}

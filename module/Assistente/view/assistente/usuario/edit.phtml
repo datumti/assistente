@@ -1,0 +1,87 @@
+<div class="row">
+    
+    <div class="col-md-6 col-md-offset-3">
+
+        <div class="well formEspacoTopo">
+            
+            <h3 class="text-center">Editar Usuário</h3> 
+
+            <?php
+            $form = $this->form;
+
+            $form->setAttribute('action', $this->url('assistente-interna', array('controller' => 'usuarios', 'action' => 'edit')));
+
+            $form->prepare();
+            echo $this->form()->openTag($form);
+            echo $this->formHidden($form->get('id'));
+            ?>
+            
+            <div class="form-group">
+            <?php 
+                echo $this->formInput($form->get('matricula')); 
+                echo $this->formElementErrors($form->get('matricula'), array('class' => 'error'));
+            ?>
+            </div>
+            
+            
+            <div class="form-group">
+            <?php 
+                echo $this->formInput($form->get('nome')); 
+                echo $this->formElementErrors($form->get('nome'), array('class' => 'error'));
+            ?>
+            </div>
+            
+            <div class="form-group">
+            <?php 
+                echo $this->formInput($form->get('admissao')); 
+                echo $this->formElementErrors($form->get('admissao'), array('class' => 'error')); 
+            ?>
+            </div>
+            
+            <div class="form-group">
+            <?php echo $this->formRow($form->get('foto')); ?>
+            <span id="helpBlock" class="help-block"> <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Foto do usuário.</span>    
+            </div>
+            
+            <div class="form-group">
+            <?php 
+                echo $this->formInput($form->get('dataNascimento')); 
+                echo $this->formElementErrors($form->get('dataNascimento'), array('class' => 'error'));
+            ?>
+            </div>
+            
+            <div class="form-group">
+            <?php 
+                echo $this->formSelect($form->get('departamento')) . '<br />'; 
+                echo $this->formElementErrors($form->get('departamento'), array('class' => 'error'));
+            ?>
+            </div>
+            
+             <div class="form-group">
+            <?php 
+                echo $this->formSelect($form->get('status')); 
+                echo $this->formElementErrors($form->get('status'), array('class' => 'error'));
+            ?>
+            </div>
+            
+             <div class="form-group">
+            <?php echo $this->formRow($form->get('email')); ?>
+             
+            <span id="helpBlock" class="help-block"> <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Campo obrigatorio somente para usuarios administradores.</span>    
+            </div>
+            
+             <div class="form-group">
+            <?php echo $this->formRow($form->get('password')); ?>
+            <span id="helpBlock" class="help-block"> <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Campo obrigatorio somente para usuarios administradores.</span>    
+            </div>
+            
+            
+            <?php
+            echo $this->formSubmit($form->get('submit'));
+            echo $this->form()->closeTag();
+            ?>
+
+        </div> 
+    </div>
+
+</div>
