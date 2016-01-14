@@ -64,10 +64,10 @@ class Usuario extends \Assistente\Entity\Usuario implements \Doctrine\ORM\Proxy\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'departamento', 'nome', 'foto', 'dataNascimento', 'status', 'email', 'password', 'salt');
+            return array('__isInitialized__', 'id', 'departamento', 'matricula', 'admissao', 'nome', 'foto', 'dataNascimento', 'status', 'email', 'password', 'salt');
         }
 
-        return array('__isInitialized__', 'id', 'departamento', 'nome', 'foto', 'dataNascimento', 'status', 'email', 'password', 'salt');
+        return array('__isInitialized__', 'id', 'departamento', 'matricula', 'admissao', 'nome', 'foto', 'dataNascimento', 'status', 'email', 'password', 'salt');
     }
 
     /**
@@ -279,6 +279,28 @@ class Usuario extends \Assistente\Entity\Usuario implements \Doctrine\ORM\Proxy\
     /**
      * {@inheritDoc}
      */
+    public function getMatricula()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMatricula', array());
+
+        return parent::getMatricula();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAdmissao()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAdmissao', array());
+
+        return parent::getAdmissao();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setId($id)
     {
 
@@ -384,6 +406,28 @@ class Usuario extends \Assistente\Entity\Usuario implements \Doctrine\ORM\Proxy\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'encryptPassword', array($password));
 
         return parent::encryptPassword($password);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setMatricula($matricula)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMatricula', array($matricula));
+
+        return parent::setMatricula($matricula);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAdmissao($admissao)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAdmissao', array($admissao));
+
+        return parent::setAdmissao($admissao);
     }
 
     /**

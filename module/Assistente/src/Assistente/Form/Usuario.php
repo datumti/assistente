@@ -3,7 +3,8 @@
 namespace Assistente\Form;
 
 use Zend\Form\Form,
-    Zend\Form\Element\Select;    
+    Zend\Form\Element\Select,
+    Zend\Form\Element\Checkbox;    
 
 class Usuario extends Form {
     
@@ -14,7 +15,7 @@ class Usuario extends Form {
         $this->departamentos = $departamentos;
 
         $this->setAttribute('method', 'post');
-        $this->setInputFilter(new UsuarioFilter);
+        $this->setInputFilter(new UsuarioFilter); 
         $this->setAttribute('enctype','multipart/form-data');   
 
         $this->add(array(
@@ -137,6 +138,23 @@ class Usuario extends Form {
                       );
                      
         $this->add($status);
+        
+        
+        /*$ativo = new \Zend\Form\Element\Checkbox("ativo");
+        $ativo->setLabel("Desativar?: ");
+        $ativo->setCheckedValue("0");
+        $this->add($ativo);*/
+        
+        $this->add(array(
+            'type' => 'Zend\Form\Element\Checkbox',
+            'name' => 'ativo',
+            'options' => array(
+                'label' => 'Desativar?:',
+                'use_hidden_element' => true,
+                'checked_value' => 0,
+                'unchecked_value' => 1
+            ),
+        ));
 
         $this->add(array(
             'name' => 'submit',

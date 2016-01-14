@@ -5,14 +5,21 @@ namespace Assistente;
 use Zend\Mvc\ModuleRouteListener,
     Zend\Mvc\MvcEvent,
     Zend\ModuleManager\ModuleManager;
+
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+
 use Zend\Authentication\AuthenticationService,
     Zend\Authentication\Storage\Session as SessionStorage;
+
+use Zend\Session\Container;
+
 use Assistente\Service\Departamentos as DepartamentoService;
 use Assistente\Service\Usuarios as UsuarioService;
 use Assistente\Form\Usuario as FrmUsuario;
 use Assistente\Auth\Adapter as AuthAdapter;
 
-class Module {
+class Module implements AutoloaderProviderInterface, ConfigProviderInterface {
 
     public function getConfig() {
         return include __DIR__ . '/config/module.config.php';
@@ -29,17 +36,20 @@ class Module {
         );
     }
 
-    /* public function onBootstrap($e) {
-      $e->getApplication()->getEventManager()->getSharedManager()->attach('Zend\Mvc\Controller\AbstractActionController', 'dispatch', function($e) {
-      $controller = $e->getTarget();
-      $controllerClass = get_class($controller);
-      $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
-      $config = $e->getApplication()->getServiceManager()->get('config');
-      if (isset($config['module_layouts'][$moduleNamespace])) {
-      $controller->layout($config['module_layouts'][$moduleNamespace]);
-      }
-      }, 98);
-      } */
+    public function onBootstrap($e) {
+        $eventManager        = $e->getApplication()->getEventManager();
+        $eventManager->attach('dispatch', array($this, 'loadConfiguration' ));
+    }
+    
+    public function loadConfiguration(MvcEvent $e)
+    {           
+          $controller = $e->getTarget();
+          
+          $user_session = new Container('usuario');
+          
+          $controller->layout()->nome = trim(substr($user_session->nome, 0, 16));   
+          $controller->layout()->foto = $user_session->foto ? "/fotos/" . str_replace(" ", "_",$user_session->foto) : "/fotos/default.jpg"; 
+    }
 
     public function init(ModuleManager $moduleManager) {
         
@@ -53,10 +63,14 @@ class Module {
             $controller = $e->getTarget();
             $matchedRoute = $controller->getEvent()->getRouteMatch()->getMatchedRouteName();
 
-            if (!$auth->hasIdentity() and ($matchedRoute == "assistente" or $matchedRoute == "assistente-interna")) {
-                return $controller->redirect()->toRoute('assistente-auth');
+            if (!$auth->hasIdentity() and ($matchedRoute == "home" or $matchedRoute == "assistente" or $matchedRoute == "assistente-interna")) {  
+            //if (!$auth->hasIdentity()) { 
+                return $controller->redirect()->toRoute('assistente-auth'); 
             }
-        }, 99);
+        }, 99); 
+        
+       
+        
     }
 
     public function getServiceConfig() {

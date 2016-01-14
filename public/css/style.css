@@ -4,11 +4,11 @@
 }
 
 .logoLogin{
-    margin-left: 14%;  
+    margin-left: 23%;  
 }
 
 .formEspacoTopo{
-    margin-top: 60px; 
+    margin-top: 120px; 
 }
 
 .fundoBody{
@@ -32,4 +32,18 @@ ul{
 
 .alert li{
     list-style: none;
+}
+
+.nav{
+    margin-top: 10px;
+}
+
+.well {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #D2D6DE;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
 }

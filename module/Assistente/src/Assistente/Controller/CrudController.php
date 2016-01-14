@@ -20,13 +20,13 @@ abstract class CrudController extends AbstractActionController {
          
         $list = $this->getEm()
                 ->getRepository($this->entity)
-                ->findAll();
+                ->findBy(array(), array('nome'=>'asc'));
 
         $page = $this->params()->fromRoute('page');
 
         $paginator = new Paginator(new ArrayAdapter($list));
         $paginator->setCurrentPageNumber($page);
-        $paginator->setDefaultItemCountPerPage(5);
+        $paginator->setDefaultItemCountPerPage(20);
 
         return new ViewModel(array('data' => $paginator, 'page' => $page));
     }

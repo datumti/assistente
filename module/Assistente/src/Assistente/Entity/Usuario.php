@@ -83,9 +83,12 @@ class Usuario {
      */
     protected $salt;
     
-    
-    
-    
+     /**
+     * @ORM\Column(type="integer")
+     * @var int 
+     */
+    protected $ativo;
+   
     
     public function __construct($options = null) {
         Configurator::configure($this, $options);
@@ -209,7 +212,18 @@ class Usuario {
         $this->admissao = $admissao;
         return $this;
     }
+    
+    function getAtivo() {
+        return $this->ativo;
+    }
 
+    function setAtivo($ativo) {
+        $this->ativo = $ativo;
+        return $this;
+    }
+
+    
+    
     public function toArray(){
         return array(
             'id' => $this->getId(), 
@@ -222,7 +236,8 @@ class Usuario {
             'email' => $this->getEmail(),
             'password' => $this->getPassword(),
             'salt' => $this->salt,
-            'departamento' => $this->departamento->getId()
+            'departamento' => $this->departamento->getId(),
+            'ativo' => $this->getAtivo()
             );
     }
     

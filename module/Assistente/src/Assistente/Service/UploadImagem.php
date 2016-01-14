@@ -6,8 +6,8 @@ use Zend\Http\PhpEnvironment\Request;
 
 class UploadImagem {
 
-    public $width = 250; 
-    public $height = 250; 
+    public $width = 180; 
+    public $height = 180; 
     protected $tipos = array("jpeg", "png", "gif"); // Nossos tipos de imagem disponíveis para este exemplo
     protected $dir;
 
@@ -42,7 +42,7 @@ class UploadImagem {
             
         } // -> fim if
 // Criando a imagem com o novo tamanho
-         
+        
         $novaimagem =  imagecreatetruecolor($width, $height);
         
         switch ($tipo) {

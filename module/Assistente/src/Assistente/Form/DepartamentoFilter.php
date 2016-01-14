@@ -25,7 +25,7 @@ class DepartamentoFilter extends InputFilter {
             )
         ));
         
-        $this->add(array(
+       /* $this->add(array(
             'name' => 'sigla',
             'required' => true,
             'filters' => array(
@@ -40,7 +40,7 @@ class DepartamentoFilter extends InputFilter {
                     )
                 )
             )
-        ));
+        ));*/
     }
     
 }

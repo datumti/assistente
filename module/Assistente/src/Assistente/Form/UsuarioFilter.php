@@ -42,7 +42,7 @@ class UsuarioFilter extends InputFilter {
             )
         ));
         
-         $this->add(array(
+         /*$this->add(array(
             'name' => 'admissao',
             'required' => true,
             'filters' => array(
@@ -57,7 +57,7 @@ class UsuarioFilter extends InputFilter {
                     )
                 )
             )
-        ));
+        ));*/
          
           $this->add(array(
             'name' => 'matricula',

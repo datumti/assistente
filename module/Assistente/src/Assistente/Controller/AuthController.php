@@ -8,6 +8,8 @@ use Zend\Mvc\Controller\AbstractActionController,
 use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Storage\Session as SessionStorage;
 
+use Zend\Session\Container;
+
 use Assistente\Form\Login as LoginForm;
 
 class AuthController extends AbstractActionController {
@@ -35,8 +37,21 @@ class AuthController extends AbstractActionController {
                 $result = $auth->authenticate($authAdapter);
 
                 if ($result->isValid()) {
+                    
+                    $dadosUsuario = $auth->getIdentity()['user'];
+                    
+                    //cria um container(sessao) chamada usuario 
+                    $user_session = new Container('usuario');
+                    $user_session->id = $dadosUsuario['id'];
+                    $user_session->nome = $dadosUsuario['nome']; 
+                    $user_session->matricula = $dadosUsuario['matricula']; 
+                    $user_session->foto = $dadosUsuario['foto'];
+                    $user_session->dataNascimento = $dadosUsuario['dataNascimento'];  
+                    $user_session->email = $dadosUsuario['email'];
+                    
                     $sessionStorage->write($auth->getIdentity()['user'], null);
                     return $this->redirect()->toRoute("assistente", array('controller' => 'usuarios'));
+                    
                 }else
                     $error = true;
             }

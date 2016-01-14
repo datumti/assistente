@@ -5,16 +5,6 @@ namespace Assistente;
 return array(
     'router' => array(
         'routes' => array(
-            'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route' => '/',
-                    'defaults' => array(
-                        'controller' => 'Assistente\Controller\Index',
-                        'action' => 'index',
-                    ),
-                ),
-            ),
             'assistente-interna' => array(
                 'type' => 'Segment',
                 'options' => array(
@@ -51,6 +41,16 @@ return array(
                     'defaults' => array(
                         'action' => 'logout',
                         'controller'=>'assitente/auth' 
+                    ),
+                ),
+            ),
+            'home' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route' => '/',
+                    'defaults' => array(
+                        'controller' => 'Assistente\Controller\Index',
+                        'action' => 'index',
                     ),
                 ),
             ),
